@@ -1,0 +1,15 @@
+class Solution {
+    public int countGoodStrings(int low, int high, int zero, int one) {
+        int [] dp = new int[high+1];
+        int summ = 0;
+        int l = one <= zero? one: zero, md = 1000000007;
+        dp[0] = 1;
+        for(; l < high+1; l++){
+            if(l >= one) dp[l] += dp[l-one];
+            if(l >= zero) dp[l] += dp[l-zero];
+            dp[l] = dp[l]%md;
+            if(l >= low) summ = (summ + dp[l]) % md;
+        }
+        return summ;
+    }
+}

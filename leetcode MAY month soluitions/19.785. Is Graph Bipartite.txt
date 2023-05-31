@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int n = graph.length;
+        int[] memo = new int[n]; 
+        for (int i = 0; i < n; i++){
+            if (memo[i] == 0 && !dfs(i, graph, memo, 1)) return false;
+        }return true;
+    }
+
+    public boolean dfs(int idx, int[][] graph, int[] memo, int color){
+        if (memo[idx] != 0) return memo[idx] == color;
+        memo[idx] = color;
+        for (int to : graph[idx]){
+            if (!dfs(to, graph, memo, color * -1)) return false;
+        }return true;
+    }
+}

@@ -1,0 +1,42 @@
+class Solution {
+  static void printSubsequences(int[] arr, int index,ArrayList<Integer> path,int target,ArrayList<Integer> counter) {
+		
+	   if (index == arr.length)
+	    {
+
+	        if (path.size() > 0) {
+	        	Collections.sort(path);
+	        	int min=path.get(0);
+	        	int max=path.get(path.size()-1);
+	        	if(min+max<=target) {
+	        		counter.add(min+max);
+	        	}
+	        }
+	    }
+	     
+	    else
+	    {
+
+	        printSubsequences(arr, index + 1, path,target,counter);
+	         
+	        path.add(arr[index]);
+	  
+	        printSubsequences(arr, index + 1, path,target,counter);
+	         
+	        path.remove(path.size() - 1);
+	    }
+	    return;
+	}
+    public int numSubseq(int[] nums, int target) {
+     ArrayList<Integer> ans=new ArrayList<>();
+	int count=0;
+	ArrayList<Integer> counter=new ArrayList<>();
+	printSubsequences(nums,0,ans,target,counter);
+	for(int i=0;i<counter.size();i++) {
+		if(counter.get(i)<=target) {
+			count++;
+		}
+	}
+    return count;
+    }
+}

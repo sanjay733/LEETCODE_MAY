@@ -1,0 +1,21 @@
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode temp=head;
+        int count=1;
+        while(count<k){
+            temp=temp.next;
+            count++;
+        }
+        ListNode temp1=temp;
+        ListNode swap=head;
+        while(temp.next!=null){
+            temp=temp.next;
+            swap=swap.next;
+        }
+        int swapper=temp1.val;
+        temp1.val=swap.val;
+        swap.val=swapper;
+        
+        return head;
+    }
+}

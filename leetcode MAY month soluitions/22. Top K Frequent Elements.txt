@@ -1,0 +1,21 @@
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer,Integer> mp=new HashMap<>();
+        //creating a frequency map
+        for(int i=0;i<nums.length;i++){
+            mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
+        }
+       PriorityQueue<Integer> max=new PriorityQueue((a,b)-> (mp.get(b)-mp.get(a)));
+       //populating the heap with key set of map
+       for(int num:mp.keySet()){
+           max.add(num);
+       }
+       //output array
+       int res[]=new int[k];
+
+       for(int i=0;i<k;i++){
+           res[i]=max.poll();
+       }
+       return res;
+    }
+}

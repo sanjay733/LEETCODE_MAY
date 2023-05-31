@@ -1,0 +1,18 @@
+class Solution {
+    static int signFunc(double i){
+        if(i>0){
+            return 1;
+        }
+        if(i<0){
+            return -1;
+        }
+        return (int)i;
+    }
+    public int arraySign(int[] nums) {
+        double prod=1;
+        for(int i=0;i<nums.length;i++){
+            prod*=nums[i];
+        }
+        return signFunc(prod);
+    }
+}
